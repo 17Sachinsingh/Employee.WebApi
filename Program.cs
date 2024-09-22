@@ -1,4 +1,5 @@
 using Employees.WebAPI.Data;
+using Employees.WebAPI.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,6 +11,7 @@ builder.Services.AddDbContext<ApplicationDatbaseContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("Default")); 
 });
+builder.Services.AddTransient<IEmployeeService, EmployeeService>();
 
 var app = builder.Build();
 
